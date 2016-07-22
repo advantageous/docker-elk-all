@@ -1,0 +1,50 @@
+{
+  "builders":
+  [
+    {
+      "type": "docker",
+      "image": "sebp/elk:es234_l234_k452",
+      "commit": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type" : "shell",
+      "inline" : [
+        "rm /etc/logstash/conf.d/30-output.conf"
+      ]
+    },
+    {
+      "type" : "file",
+      "source": "./30-output.conf",
+      "destination": "/etc/logstash/conf.d/30-output.conf"
+    },
+    {
+      "type" : "file",
+      "source": "./50-udp.conf",
+      "destination": "/etc/logstash/conf.d/50-udp.conf"
+    },
+    {
+      "type" : "shell",
+      "inline" : [
+        "chmod +r /etc/logstash/conf.d/*"
+      ]
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "repository": "advantageous/elk",
+        "tag": "0.1"
+      },
+      {
+        "type": "docker-tag",
+        "repository": "advantageous/elk",
+        "tag": "latest"
+      },
+      "docker-push"
+    ]
+  ]
+
+}

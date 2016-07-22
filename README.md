@@ -112,9 +112,9 @@ Note that start.sh starts the ELK stack as unix services.
 
 ## Build
 
-# [Install packer](https://www.packer.io/intro/getting-started/setup.html).
-# Check out the project from [github](https://github.com/advantageous/docker-elk-all).
-# Go to the project folder and run packer build as follows.
+ # [Install packer](https://www.packer.io/intro/getting-started/setup.html).
+ # Check out the project from [github](https://github.com/advantageous/docker-elk-all).
+ # Go to the project folder and run packer build as follows.
 
 ```sh
 $ packer build elk-docker.json
